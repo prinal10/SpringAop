@@ -7,10 +7,12 @@ import com.demo.service.ShapeService;
 
 public class AopMain {
 
+	private static AbstractApplicationContext context;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		context = new ClassPathXmlApplicationContext("spring.xml");
 		// ShapeService shapeService = (ShapeService)
 		// context.getBean("shapeService");
 		/*
@@ -20,6 +22,7 @@ public class AopMain {
 		 */
 		ShapeService shapeService = context.getBean("shapeService", ShapeService.class);
 		System.out.println(shapeService.getCircle().getName());
+		shapeService.getCircle().setName("Argument Testing");
 		System.out.println(shapeService.getTriangle().getName());
 
 	}
