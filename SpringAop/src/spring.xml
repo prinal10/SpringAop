@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+ -->
+<!--
+ default-destroy-method="methodName() default-init-method="myInit" :
+ similar to the the init and destroy method used below in the bean tag but this is at global level and so this will
+ be the default init and destroy for all beans.
+ -->
+<!-- <beans default-destroy-method="beforeDestroy" default-init-method="myInit"> -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/data/mongo
+    http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+<aop:aspectj-autoproxy />
+
+<!-- 	<bean id="triangle" class="com.demo.model.Triangle">
+		<property name="name" value="Equilateral Triangle">
+		</property>
+	</bean>
+	
+	<bean id="circle" class="com.demo.model.Circle">
+		<property name="name" value="Oval Circle">
+		</property>
+	</bean> -->
+	
+	<!--
+	Instead of writing Shape Service,Triangle and Circle beans here lets initialize the bean using the annotation in the class itself 
+	 But we have to add the below context:component-scan to tell spring that there are classes in the specified package which are marked
+	 for bean creation/initialization
+	 -->
+	<!--  
+	 <bean id="shapeService" class="com.demo.service.ShapeService">
+	 </bean> -->
+	 
+	 <context:component-scan base-package="com.demo.*"></context:component-scan>
+	 <bean name="loggingAspect" class="com.demo.aspect.LoggingAspect"></bean>
+
+</beans>
