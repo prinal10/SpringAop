@@ -21,8 +21,8 @@ public class AopMain {
 		 * spring itself
 		 */
 		ShapeService shapeService = context.getBean("shapeService", ShapeService.class);
+		// shapeService.getCircle().setName("Argument Testing");
 		System.out.println(shapeService.getCircle().getName());
-		shapeService.getCircle().setName("Argument Testing");
 		System.out.println(shapeService.getTriangle().getName());
 
 	}

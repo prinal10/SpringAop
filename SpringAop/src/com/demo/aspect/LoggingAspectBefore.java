@@ -1,9 +1,6 @@
 package com.demo.aspect;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 
 /*
  * Use to mark this class as an Aspect and the method of this class will
@@ -85,11 +82,12 @@ public class LoggingAspectBefore {
 	 * }
 	 */
 
-	@Before("allGetters()")
-	public void pointcutexample1() {
-		System.out.println("Advice thrown from the pointcutexample - 1");
-
-	}
+	/*
+	 * @Before("allGetters()") public void pointcutexample1() {
+	 * System.out.println("Advice thrown from the pointcutexample - 1");
+	 * 
+	 * }
+	 */
 
 	/*
 	 * This advice will execute only when both of the specified pointcuts
@@ -102,11 +100,13 @@ public class LoggingAspectBefore {
 	 * going to be called (for here in the main method) only then the below
 	 * advice will get execute
 	 */
-	@Before("allGetters() && allCircleMethods()")
-	public void pointcutexample2() {
-		System.out.println("Advice thrown from the pointcutexample - 2");
-
-	}
+	/*
+	 * @Before("allGetters() && allCircleMethods()") public void
+	 * pointcutexample2() {
+	 * System.out.println("Advice thrown from the pointcutexample - 2");
+	 * 
+	 * }
+	 */
 
 	/*
 	 * Suppose we have many advice that we want to run on a same event like we
@@ -117,9 +117,9 @@ public class LoggingAspectBefore {
 	 * use @Before("allGetters()") for all other advice.
 	 * i.e @Before("dummy_Class_Name")
 	 */
-	@Pointcut("execution(* get*())")
-	public void allGetters() {
-	}
+	/*
+	 * @Pointcut("execution(* get*())") public void allGetters() { }
+	 */
 
 	/*
 	 * We can also config any advice for all methods in a class/package. Simply
@@ -133,9 +133,10 @@ public class LoggingAspectBefore {
 	 * having the specified type/classname as their argument types
 	 * 
 	 */
-	@Pointcut("within(com.demo.model.Circle)")
-	public void allCircleMethods() {
-	}
+	/*
+	 * @Pointcut("within(com.demo.model.Circle)") public void allCircleMethods()
+	 * { }
+	 */
 
 	/*
 	 * Here the below advice is executed BEFORE "allCircleMethods()" are called
@@ -152,12 +153,14 @@ public class LoggingAspectBefore {
 	 * class itself
 	 * 
 	 */
-	@Before("allCircleMethods()")
-	public void joinPointExample(JoinPoint joinPoint) {
-
-		System.out.println(joinPoint.getTarget());
-
-	}
+	/*
+	 * @Before("allCircleMethods()") public void joinPointExample(JoinPoint
+	 * joinPoint) {
+	 * 
+	 * System.out.println(joinPoint.getTarget());
+	 * 
+	 * }
+	 */
 
 	/*
 	 * The below advice will run before a class method having the specified type
@@ -170,12 +173,16 @@ public class LoggingAspectBefore {
 	 * the advice to perform some action.(here the argument of the triggering
 	 * method (setName()) has String type argument)
 	 */
-	@Before("args(var_name)")
-	public void stringArgumentMethods(String var_name) {
-
-		System.out.println("This from the String Argument Method and the variable is : " + var_name);
-
-	}
+	/*
+	 * @Before("args(var_name)") public void stringArgumentMethods(String
+	 * var_name) {
+	 * 
+	 * System.out.
+	 * println("This from the String Argument Method and the variable is : " +
+	 * var_name);
+	 * 
+	 * }
+	 */
 
 	/*
 	 * Here by specifying the "get(..)" we are telling the spring this aspect
