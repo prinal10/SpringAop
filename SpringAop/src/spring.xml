@@ -51,5 +51,65 @@
 	 <bean name="loggingAspectAfter" class="com.demo.aspect.LoggingAspectAfter"></bean>
 	 <bean name="loggingAspectAround" class="com.demo.aspect.LoggingAspectAround"></bean>
 	 <bean name="loggingAspectCustom" class="com.demo.aspect.LoggingAspectCustom"></bean>
+	 <bean name="loggingAspectUsingXML" class="com.demo.aspect.LoggingAspectUsingXML"></bean>
+	
+	<!--
+	The "aop:config" tag is used when we want to create a advice and use the aspect from the xml i.e without using any annotation in 
+	the class itself. We will create a class with the advice method and code and will configure when to run the advice code in xml 
+	"aop:config" tag   
+	 --> 
+	<aop:config>
+		
+		<!--The below line is equivalent to marking the class with @Aspect annotation  but here we use bean name="loggingAspectUsingXML"
+			to mark the class -->
+		<aop:aspect id="AspectUsingXML" ref="loggingAspectUsingXML">
+			
+			<!--
+			The below line equivalent to marking the Point Cut method: "allGetters()" with @Pointcut("execution(* get*())")
+			 -->
+			<aop:pointcut expression="execution(* get*())" id="allGetters"/>
+			
+			<!-- 
+			The below line equivalent to marking the Advice Method : "myAroundAdvice" with @Around("allGetters()")
+			 -->
+			<aop:around method="myAroundAdvice" pointcut-ref="allGetters"/>
+			
+		</aop:aspect>
+		
+		
+	</aop:config> 
+	 
 
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

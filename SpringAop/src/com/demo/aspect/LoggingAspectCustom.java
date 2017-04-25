@@ -1,9 +1,6 @@
 package com.demo.aspect;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class LoggingAspectCustom {
@@ -18,25 +15,21 @@ public class LoggingAspectCustom {
 	 * and the below advice will be applied to that method/variable. In short we
 	 * are marking/pointing our triggering method with the @CustomLoggable
 	 */
-	@Around("@annotation(com.demo.aspect.CustomLoggable)")
-	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
-		Object returnValue = null;
-		try {
-			System.out.println("This is before the Custom method !!");
-			returnValue = proceedingJoinPoint.proceed();
-			System.out.println("This is After the Custom method !!");
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			System.out.println("This is error in the Custom method !!");
-			e.printStackTrace();
-		}
-
-		System.out.println("This is End of the Custom method !!");
-		return returnValue;
-	}
-
-	@Pointcut("execution(* get*())")
-	public void allGetters() {
-	}
+	/*
+	 * @Around("@annotation(com.demo.aspect.CustomLoggable)") public Object
+	 * myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) { Object
+	 * returnValue = null; try {
+	 * System.out.println("This is before the Custom method !!"); returnValue =
+	 * proceedingJoinPoint.proceed();
+	 * System.out.println("This is After the Custom method !!"); } catch
+	 * (Throwable e) { // TODO Auto-generated catch block
+	 * System.out.println("This is error in the Custom method !!");
+	 * e.printStackTrace(); }
+	 * 
+	 * System.out.println("This is End of the Custom method !!"); return
+	 * returnValue; }
+	 * 
+	 * @Pointcut("execution(* get*())") public void allGetters() { }
+	 */
 
 }
